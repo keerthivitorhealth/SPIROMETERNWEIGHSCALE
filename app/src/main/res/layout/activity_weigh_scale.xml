@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WeighScaleActivity">
+
+    <TextView
+        android:id="@+id/tv_ws_title"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentTop="true"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:text="Weigh Scale"/>
+
+    <TextView
+        android:id="@+id/tv_ws_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_ws_title"
+        android:text="WEIGHT : "
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:textSize="25sp"/>
+
+    <Button
+        android:id="@+id/btn_ws_StartScan"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tv_ws_weight"
+        android:layout_marginTop="10dp"
+        android:text="Scan"/>
+
+    <Button
+        android:id="@+id/btn_ws_StopScan"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tv_ws_weight"
+        android:layout_marginTop="10dp"
+        android:text="Stop Scanning"/>
+
+    <TextView
+        android:id="@+id/tv_ws_Peripheral"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:text=""
+        android:layout_below="@+id/btn_ws_StopScan"
+        android:scrollbars="vertical"
+        android:maxLines="30" />
+
+
+</RelativeLayout>

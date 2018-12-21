@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:text="Weigh Scale And Spirometer"
+        android:gravity="center"
+        android:layout_alignParentTop="true"/>
+
+    <Button
+        android:id="@+id/button_weighscale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Weigh Scale"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tv_title"
+        android:textStyle="bold"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"/>
+
+    <Button
+        android:id="@+id/button_spirometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Spirometer"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/button_weighscale"
+        android:textStyle="bold"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"/>
+
+</RelativeLayout>
