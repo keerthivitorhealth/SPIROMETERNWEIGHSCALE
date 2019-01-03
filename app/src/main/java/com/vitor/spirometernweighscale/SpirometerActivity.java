@@ -115,17 +115,13 @@ public class SpirometerActivity extends AppCompatActivity {
 
             public void onClick(View v)
             {
-
                 mAdapter = BluetoothAdapter.getDefaultAdapter();
-                progressDialog1 = ProgressDialog.show(SpirometerActivity.this,
-                        "Info", "Please wait", true, false);
+                progressDialog1 = ProgressDialog.show(SpirometerActivity.this, "Info", "Please wait", true, false);
                 progressDialog1.setContentView(R.layout.customprocessdlg);
 
                 TextView text1 = (TextView) progressDialog1.findViewById(R.id.msgtxt);
                 text1.setText("Data Reading in Progress...");
-
                 mState = STATE_NONE;
-
                 Thread th1;
                 th1 = new Thread()
                 {
@@ -134,21 +130,16 @@ public class SpirometerActivity extends AppCompatActivity {
                     {
                         // TODO Auto-generated method stub
                         super.run();
-
                         try
                         {
                             check = false;
                             sleep(10000);
-
                         } catch (InterruptedException e)
                         {
                             // TODO Auto-generated catch block
-
                         } finally
                         {
-
                             progressDialog1.dismiss();
-
                             // cancelmythread();
                             if (check == false)
                             {
@@ -156,23 +147,16 @@ public class SpirometerActivity extends AppCompatActivity {
                                 {
                                     public void run()
                                     {
-                                        // Toast.makeText(getApplicationContext(),
-                                        // "could not connect , please try again.........",
-                                        // 10000).show();
                                         Context context = getApplicationContext();
                                         CharSequence text = "could not connect , please try again.........!";
-                                        int duration = 10000;
 
                                         Toast toast = Toast.makeText(context, text, Toast.LENGTH_LONG);
-                                        toast.setGravity(Gravity.CENTER | Gravity.CENTER, 0, 0);
                                         toast.show();
                                     }
-
                                 });
                             }
                             check = true;
                         }
-
                     }
                 };
                 th1.start();
@@ -185,44 +169,34 @@ public class SpirometerActivity extends AppCompatActivity {
                 {
                     for (BluetoothDevice device : bondedSet)
                     {
-
                         Log.e("", device.getName() + "\n" + device.getAddress());
                         Log.v("", " count = " + count++);
-
 
                         dname = device.getName();
 
                         devicename = dname.substring(0, 4);
                         if (devicename.equalsIgnoreCase("LUNG"))
                         {
-
                             if (device != null)
                             {
                                 if (getState() != STATE_CONNECTED)
                                     connect(device, true);
                             }
-
-
-
                         }
                     }
                 } else
                 {
                     Log.e("", "No Devices");
                 }
-
             }
         });
-
     }
-
 
     private synchronized void setState(int state)
     {
         if (D)
             Log.d(TAG, "setState() " + mState + " -> " + state);
         mState = state;
-
     }
 
     /**
@@ -232,7 +206,6 @@ public class SpirometerActivity extends AppCompatActivity {
     {
         return mState;
     }
-
 
     public synchronized void connect(BluetoothDevice device, boolean secure)
     {
@@ -260,9 +233,7 @@ public class SpirometerActivity extends AppCompatActivity {
 
         mConnectThread = new ConnectThread(device, secure);
         mConnectThread.start();
-
     }
-
 
     public synchronized void connected(BluetoothSocket socket, BluetoothDevice device, final String socketType) {
         if (D)
@@ -288,7 +259,6 @@ public class SpirometerActivity extends AppCompatActivity {
         setState(STATE_CONNECTED);
     }
 
-
     public synchronized void stop()
     {
         if (D)
@@ -312,19 +282,15 @@ public class SpirometerActivity extends AppCompatActivity {
 
     public void write(byte[] out)
     {
-
         ConnectedThread r;
-
         synchronized (this)
         {
             if (mState != STATE_CONNECTED)
                 return;
             r = mConnectedThread;
         }
-
         r.write(out);
     }
-
 
     private class ConnectThread extends Thread
     {
@@ -338,15 +304,10 @@ public class SpirometerActivity extends AppCompatActivity {
             BluetoothSocket tmp = null;
             mSocketType = secure ? "Secure" : "Insecure";
 
-
             try
             {
-                if (secure)
-                {
-
-
-                    tmp = device
-                            .createRfcommSocketToServiceRecord(MY_UUID_SECURE);
+                if (secure) {
+                    tmp = device.createRfcommSocketToServiceRecord(MY_UUID_SECURE);
                 }
             } catch (IOException e) {
                 Log.e(TAG, "Socket Type: " + mSocketType + "create() failed", e);
@@ -356,14 +317,11 @@ public class SpirometerActivity extends AppCompatActivity {
 
         public void run()
         {
-
             Log.i(TAG, "BEGIN mConnectThread SocketType:" + mSocketType);
-
             Log.d("@@@@@@@@", "beginnnnn");
 
             setName("ConnectThread" + mSocketType);
             mAdapter.cancelDiscovery();
-
 
             try
             {
@@ -371,15 +329,11 @@ public class SpirometerActivity extends AppCompatActivity {
             } catch (IOException e)
             {
                 // Close the socket
-                try
-                {
+                try {
                     mmSocket.close();
-                } catch (IOException e2)
-                {
-                    Log.e(TAG, "unable to close() " + mSocketType
-                            + " socket during connection failure", e2);
+                } catch (IOException e2) {
+                    Log.e(TAG, "unable to close() " + mSocketType + " socket during connection failure", e2);
                 }
-
                 return;
             }
 
@@ -401,8 +355,7 @@ public class SpirometerActivity extends AppCompatActivity {
                 mmSocket.close();
             } catch (IOException e)
             {
-                Log.e(TAG, "close() of connect " + mSocketType
-                        + " socket failed", e);
+                Log.e(TAG, "close() of connect " + mSocketType                        + " socket failed", e);
             }
         }
     }
@@ -461,7 +414,6 @@ public class SpirometerActivity extends AppCompatActivity {
             Log.i("@@", "finally method..");
             Log.i(TAG, "BEGIN mConnectedThread");
 
-
             byte[] inBuffer = new byte[59];
             byte[] outBuffer = new byte[7];
 
@@ -481,17 +433,12 @@ public class SpirometerActivity extends AppCompatActivity {
             int readCount = 0;
             try
             {
-
-                Log.i("@@@","reda from..");
+                Log.i("@@@","read from..");
                 while (bytes < 59)
                 {
-
-                    readCount = mmInStream.read(inBuffer, bytes,
-                            59 - bytes);
+                    readCount = mmInStream.read(inBuffer, bytes, 59 - bytes);
                     bytes = bytes + readCount;
                     //Log.d("Bytes count",""+inBuffer[bytes]);
-
-
 
                 }
                 BigInteger mBigInteger = new BigInteger(inBuffer);
@@ -556,7 +503,6 @@ public class SpirometerActivity extends AppCompatActivity {
 
             }
 
-
         }
 
 
@@ -586,7 +532,6 @@ public class SpirometerActivity extends AppCompatActivity {
 
 
 
-
     public void cancelmythread()
     {
         try
@@ -603,14 +548,13 @@ public class SpirometerActivity extends AppCompatActivity {
                 mConnectedThread = null;
             }
 
-
             setState(STATE_NONE);
         }
         catch (Exception e)
         {
             // TODO: handle exception
         }
-
     }
+
 
 }

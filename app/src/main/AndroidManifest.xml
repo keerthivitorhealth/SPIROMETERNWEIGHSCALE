@@ -10,9 +10,10 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
+
     <uses-feature
         android:name="android.hardware.bluetooth_le"
-        android:required="false" />
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -40,7 +41,9 @@
         <service
             android:name=".SpirometerService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <activity android:name=".WeighScaleSample1Activity"></activity>
     </application>
 
 </manifest>

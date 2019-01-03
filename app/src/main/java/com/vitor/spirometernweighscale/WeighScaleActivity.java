@@ -186,8 +186,8 @@ public class WeighScaleActivity extends AppCompatActivity {
         public void onScanResult(int callbackType, ScanResult result) {
 
             final byte[] scanRecord = result.getScanRecord().getBytes();
-//            if(result.getScanRecord()!=null && result.getScanRecord().getDeviceName()!=null && result.getScanRecord().getDeviceName().contains("Chipsea")){
-                if(result.getScanRecord()!=null && result.getDevice().getAddress().equals("CB:8E:CD:50:AB:CD")){
+            if(result.getScanRecord()!=null && result.getScanRecord().getDeviceName()!=null && result.getScanRecord().getDeviceName().contains("Chipsea")){
+//                if(result.getScanRecord()!=null && result.getDevice().getAddress().equals("CB:8E:CD:50:AB:CD")){
                 printScanRecord(result.getScanRecord().getBytes());
                 tv_peripheral.append("\n" +"Device Name: " + result.toString()  +"\n"+"SCANRECORD : "+scanRecord.toString()+"\n");
                 Log.i("WS","\n" +"Device Name: " + result.toString()  +"\n"+"SCANRECORD : "+result.getScanRecord().getBytes().toString()+"\n");

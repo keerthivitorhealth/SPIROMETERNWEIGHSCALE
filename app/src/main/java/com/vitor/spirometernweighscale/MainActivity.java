@@ -10,6 +10,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button btn_weighscale;
     Button btn_spirometer;
+    Button btn_WSSample1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
         btn_weighscale = (Button) findViewById(R.id.button_weighscale);
         btn_spirometer = (Button) findViewById(R.id.button_spirometer);
+        btn_WSSample1 = (Button) findViewById(R.id.button_weighscale_sample1);
 
         btn_weighscale.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,6 +33,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent weighScaleIntent = new Intent(MainActivity.this,SpirometerActivity.class);
+                startActivity(weighScaleIntent);
+            }
+        });
+
+        btn_WSSample1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent weighScaleIntent = new Intent(MainActivity.this,WeighScaleSample1Activity.class);
                 startActivity(weighScaleIntent);
             }
         });
